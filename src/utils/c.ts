@@ -1,3 +1,8 @@
+// @ts-ignore
+import a from "@/utils/a";
+
+console.log(a);
+
 interface IPerson {
   firstName: string;
   lastName: string;

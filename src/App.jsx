@@ -1,11 +1,19 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
-import Child from "./Child";
-import banner from "./assets/img/banner.jpeg";
+import Child from "@/Child";
+import banner from "@/assets/img/banner.jpeg";
+
+const LazyChild = lazy(() =>
+  import(
+    /* webpackPrefetch: true */
+    "./LazyChild"
+  )
+);
 
 class App extends React.Component {
   state = {
     num: 1,
+    showLazy: false,
   };
 
   render() {
@@ -23,6 +31,14 @@ class App extends React.Component {
         </button>
         {/* <img src={banner} /> */}
         <Child />
+        <button onClick={() => this.setState({ showLazy: true })}>
+          显示lazy child
+        </button>
+        {this.state.showLazy && (
+          <Suspense>
+            <LazyChild />
+          </Suspense>
+        )}
       </div>
     );
   }

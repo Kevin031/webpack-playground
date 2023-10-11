@@ -14,27 +14,23 @@ module.exports = {
   entry: path.resolve(__dirname, "../src/main.js"),
   output: {
     path: path.resolve(__dirname, "../dist"),
-    filename: "main.bundle.js",
+    filename: "[name].bundle.[chunkhash:8].js",
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
+    alias: {
+      "@": path.resolve(__dirname, "../src"),
+    },
   },
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)/,
+        test: /\.(js|jsx|ts|tsx)$/,
+        include: [path.resolve(__dirname, "../src")],
         use: [
-          {
-            loader: "babel-loader",
-          },
-          {
-            loader: "ts-loader",
-          },
-        ],
-      },
-      {
-        test: /\.(js|jsx)$/,
-        use: [
+          // {
+          //   loader: "thread-loader",
+          // },
           {
             loader: "babel-loader",
           },
