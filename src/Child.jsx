@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const withStore = (WrappedComponent) => {
   return (props) => {
@@ -6,11 +7,19 @@ const withStore = (WrappedComponent) => {
   };
 };
 
-@withStore
-class Child extends React.Component {
-  render() {
-    return <div>Child Value: {this.props.store.value}</div>;
-  }
-}
+const Child = function (props) {
+  const navigate = useNavigate();
 
-export default Child;
+  const jumpToPost = () => {
+    navigate("/post");
+  };
+
+  return (
+    <div>
+      Child Value: {props.store.value}
+      <button onClick={jumpToPost}>to post</button>
+    </div>
+  );
+};
+
+export default withStore(Child);

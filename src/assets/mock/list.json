@@ -1,0 +1,16 @@
+{
+  "type": "success",
+  "message": "ok",
+  "data": {
+    "total": "2",
+    "pageNum": 1,
+    "list": [
+      {
+        "title": "文章一"
+      },
+      {
+        "title": "文章二"
+      }
+    ]
+  }
+}
